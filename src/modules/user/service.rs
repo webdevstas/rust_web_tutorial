@@ -1,5 +1,5 @@
-use crate::repositories::UserRepository;
-use crate::models::User;
+use crate::modules::user::repository::UserRepository;
+use crate::modules::user::User;
 use sea_orm::*;
 pub struct UserService {
     db: DatabaseConnection,

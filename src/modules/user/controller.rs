@@ -3,7 +3,7 @@ use log::{info, error};
 use serde::Deserialize;
 
 use crate::config::AppState;
-use crate::services::UserService;
+use crate::modules::user::service::UserService;
 
 #[derive(Deserialize)]
 #[derive(Debug)]

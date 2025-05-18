@@ -1,6 +1,6 @@
-use crate::models::User;
+use crate::modules::user::User;
 use sea_orm::*;
-use crate::models::user::{Entity as UserEntity, ActiveModel};
+use crate::modules::user::model::{Entity as UserEntity, ActiveModel};
 
 pub struct UserRepository;
 

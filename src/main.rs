@@ -1,15 +1,12 @@
 mod db;
 mod config;
-mod services;
-mod repositories;
-mod models;
-mod controllers;
+mod modules;
 
 use actix_web::{web, App, HttpServer, middleware::Logger};
 use log::info;
 
 use crate::config::AppState;
-use crate::controllers::config_user_controller;
+use crate::modules::user::controller::config as config_user_controller;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
