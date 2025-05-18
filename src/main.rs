@@ -14,7 +14,6 @@ use crate::controllers::config_user_controller;
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     // Инициализация логгера
-    std::env::set_var("RUST_LOG", "info,actix_web=debug");
     env_logger::init();
     
     info!("Запуск сервера...");
@@ -35,8 +34,11 @@ async fn main() -> std::io::Result<()> {
 
     // Создание состояния приложения
     let app_state = web::Data::new(AppState::new(db));
+    let host = &app_state.host;
+    let port = &app_state.port;
+    let url = format!("{host}:{port}");
 
-    info!("Сервер запущен на http://0.0.0.0:8080");
+    info!("Сервер запущен на http://{url}");
 
     HttpServer::new(move || {
         App::new()
@@ -44,7 +46,7 @@ async fn main() -> std::io::Result<()> {
             .wrap(Logger::new("%a %r %s %b %{Referer}i %{User-Agent}i %T"))
             .configure(config_user_controller)
     })
-    .bind("0.0.0.0:8080")?
+    .bind(url)?
     .run()
     .await
 } 
